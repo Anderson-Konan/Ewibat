@@ -2,16 +2,27 @@ package com.wisdomteacher.ewibat.entities;
 
 import java.util.Collection;
 
-public class Commune {
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-	private Long numLogement;
+@Entity
+public class Commune {
 	
-	private String adresse;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idCommune;
 	
-	private String superficie;
-	private int loyer;
+	private String nameCommune;
 	
-	private Collection<Location> locations;
+	private String distanceCommune;
+
+	
+	@OneToMany(mappedBy = "commune", fetch = FetchType.LAZY)
+	private Collection<Quartier> quartiers;
 
 	public Commune() {
 		super();
@@ -19,45 +30,52 @@ public class Commune {
 	}
 	
 
-	public Long getNumLogement() {
-		return numLogement;
+
+	
+	
+
+
+	public Long getIdCommune() {
+		return idCommune;
 	}
 
-	public void setNumLogement(Long numLogement) {
-		this.numLogement = numLogement;
+
+	public void setIdCommune(Long idCommune) {
+		this.idCommune = idCommune;
 	}
 
-	public String getAdresse() {
-		return adresse;
+
+	public String getNameCommune() {
+		return nameCommune;
 	}
 
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+
+	public void setNameCommune(String nameCommune) {
+		this.nameCommune = nameCommune;
 	}
 
-	public String getSuperficie() {
-		return superficie;
+
+	public String getDistanceCommune() {
+		return distanceCommune;
 	}
 
-	public void setSuperficie(String superficie) {
-		this.superficie = superficie;
+
+
+	public void setDistanceCommune(String distanceCommune) {
+		this.distanceCommune = distanceCommune;
 	}
 
-	public int getLoyer() {
-		return loyer;
+
+	public Collection<Quartier> getQuartiers() {
+		return quartiers;
 	}
 
-	public void setLoyer(int loyer) {
-		this.loyer = loyer;
+
+	public void setQuartiers(Collection<Quartier> quartiers) {
+		this.quartiers = quartiers;
 	}
 
-	public Collection<Location> getLocations() {
-		return locations;
-	}
-
-	public void setLocations(Collection<Location> locations) {
-		this.locations = locations;
-	}
+	
 	
 	
 }
