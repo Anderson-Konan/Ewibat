@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Lieu {
 	private String adresse;
 	private Date dateLieu;
 	
-	@OneToMany(mappedBy = "lieux")
+	@OneToMany(mappedBy = "lieu", fetch = FetchType.LAZY)
 	private Collection<Appointment> appointments;
 
 	public Long getCodeLieu() {

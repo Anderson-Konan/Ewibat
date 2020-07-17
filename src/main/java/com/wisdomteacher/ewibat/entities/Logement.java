@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -30,6 +32,10 @@ public abstract class Logement {
 	private Collection<Location> locations;
 	
 	private String description;
+	
+	@ManyToOne
+	@JoinColumn(name="idQuartier")
+	private Quartier quartier;
 
 	public Logement() {
 		super();

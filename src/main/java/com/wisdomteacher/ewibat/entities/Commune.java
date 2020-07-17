@@ -28,12 +28,6 @@ public class Commune {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-
-
-	
-	
-
 
 	public Long getIdCommune() {
 		return idCommune;

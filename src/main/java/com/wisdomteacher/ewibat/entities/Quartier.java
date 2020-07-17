@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,10 +17,10 @@ public class Quartier implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_quartier;
-	private String name_quartier;
+	private Long idQuartier;
+	private String nameQuartier;
 	
-	@OneToMany(mappedBy = "quartier")
+	@OneToMany(mappedBy = "quartier", fetch = FetchType.LAZY)
 	private Collection<Logement> logements;
 	
 	@ManyToOne
@@ -33,21 +34,37 @@ public class Quartier implements Serializable{
 	}
 	
 	
-	public Long getId_quartier() {
-		return id_quartier;
+	
+	public Long getIdQuartier() {
+		return idQuartier;
 	}
-	public void setId_quartier(Long id_quartier) {
-		this.id_quartier = id_quartier;
+
+
+
+	public void setIdQuartier(Long idQuartier) {
+		this.idQuartier = idQuartier;
 	}
-	public String getName_quartier() {
-		return name_quartier;
+
+
+
+	public String getNameQuartier() {
+		return nameQuartier;
 	}
-	public void setName_quartier(String name_quartier) {
-		this.name_quartier = name_quartier;
+
+
+
+	public void setNameQuartier(String nameQuartier) {
+		this.nameQuartier = nameQuartier;
 	}
+
+
+
 	public Collection<Logement> getLogements() {
 		return logements;
 	}
+
+
+
 	public void setLogements(Collection<Logement> logements) {
 		this.logements = logements;
 	}
