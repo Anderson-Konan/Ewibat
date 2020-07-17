@@ -2,13 +2,18 @@ package com.wisdomteacher.ewibat.entities;
 
 import java.util.Collection;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
-public class Logement {
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class Logement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +24,12 @@ public class Logement {
 	private String superficie;
 	private int loyer;
 	
+	private byte[] photos;
+	
 	@OneToMany(mappedBy = "logement", fetch = FetchType.LAZY)
 	private Collection<Location> locations;
+	
+	private String description;
 
 	public Logement() {
 		super();
@@ -65,6 +74,22 @@ public class Logement {
 
 	public void setLocations(Collection<Location> locations) {
 		this.locations = locations;
+	}
+
+	public byte[] getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(byte[] photos) {
+		this.photos = photos;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

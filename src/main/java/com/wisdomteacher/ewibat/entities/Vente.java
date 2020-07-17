@@ -4,15 +4,13 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("admin")
-public class Admin extends Person{
+@DiscriminatorValue("vente")
+public class Vente extends Operation {
 
-	public Admin() {
+	public Vente() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	
-	
-
 }

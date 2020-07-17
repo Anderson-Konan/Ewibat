@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -17,8 +19,12 @@ public class Quartier implements Serializable{
 	private Long id_quartier;
 	private String name_quartier;
 	
-	@OneToMany(mappedBy = "Quartier")
+	@OneToMany(mappedBy = "quartier")
 	private Collection<Logement> logements;
+	
+	@ManyToOne
+	@JoinColumn(name="idCommune")
+	private Commune commune;
 	
 	
 	public Quartier() {
@@ -44,6 +50,16 @@ public class Quartier implements Serializable{
 	}
 	public void setLogements(Collection<Logement> logements) {
 		this.logements = logements;
+	}
+
+
+	public Commune getCommune() {
+		return commune;
+	}
+
+
+	public void setCommune(Commune commune) {
+		this.commune = commune;
 	}
 	
 	

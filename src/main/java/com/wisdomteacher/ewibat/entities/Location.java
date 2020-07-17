@@ -3,39 +3,28 @@ package com.wisdomteacher.ewibat.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Location implements Serializable{
+@DiscriminatorValue("location")
+public class Location extends Operation implements Serializable{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long numLocation;
 	private Date dateDebut;
 	private Date dateFin;
 	
-	@ManyToOne
-	private Logement logement;
-	
-	@ManyToOne
-	private Person person;
+
 
 	public Location() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getNumLocation() {
-		return numLocation;
-	}
-
-	public void setNumLocation(Long numLocation) {
-		this.numLocation = numLocation;
-	}
 
 	public Date getDateDebut() {
 		return dateDebut;
@@ -51,26 +40,6 @@ public class Location implements Serializable{
 
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
-	}
-
-	public Logement getLogement() {
-		return logement;
-	}
-
-	public void setLogement(Logement logement) {
-		this.logement = logement;
-	}
-
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-	
-	
-
-	
+	}	
 
 }
