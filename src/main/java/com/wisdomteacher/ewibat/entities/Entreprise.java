@@ -16,7 +16,7 @@ public class Entreprise {
 	private Long codeComp;
 	private Long numSiretComp;
 	private String nameComp;
-	private String descrptionComp;
+	private String descriptionComp;
 	
 	@OneToMany(mappedBy = "company")
 	private Collection<Appointment> appointments;
@@ -42,11 +42,12 @@ public class Entreprise {
 	public void setNameComp(String nameComp) {
 		this.nameComp = nameComp;
 	}
-	public String getDescrptionComp() {
-		return descrptionComp;
+	
+	public String getDescriptionComp() {
+		return descriptionComp;
 	}
-	public void setDescrptionComp(String descrptionComp) {
-		this.descrptionComp = descrptionComp;
+	public void setDescriptionComp(String descriptionComp) {
+		this.descriptionComp = descriptionComp;
 	}
 	public Collection<Appointment> getAppointments() {
 		return appointments;

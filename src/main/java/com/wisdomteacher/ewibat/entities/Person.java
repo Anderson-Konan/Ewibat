@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,13 +16,23 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 @Entity @Table(name = "T_Person")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE_PERSON", discriminatorType = DiscriminatorType.STRING)
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+	@Type(name = "user", value = User.class),
+	@Type(name = "admin", value = Admin.class)
+})
 public abstract class Person implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codePerson;
+	private String codePerson;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -54,13 +64,19 @@ public abstract class Person implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getCodePerson() {
+	
+
+	public String getCodePerson() {
 		return codePerson;
 	}
 
-	public void setCodePerson(Long codePerson) {
+
+
+	public void setCodePerson(String codePerson) {
 		this.codePerson = codePerson;
 	}
+
+
 
 	public String getFirstName() {
 		return firstName;
@@ -148,6 +164,18 @@ public abstract class Person implements Serializable{
 
 	public void setOperations(Collection<Operation> operations) {
 		this.operations = operations;
+	}
+
+
+
+	public Collection<Statistic> getStatistics() {
+		return statistics;
+	}
+
+
+
+	public void setStatistics(Collection<Statistic> statistics) {
+		this.statistics = statistics;
 	}
 	
 	

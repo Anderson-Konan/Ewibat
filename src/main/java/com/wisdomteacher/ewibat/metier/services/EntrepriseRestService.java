@@ -17,12 +17,12 @@ public class EntrepriseRestService {
 	@Autowired
 	private EntrepriseMetier entrepriseMetier;
 	
-	@RequestMapping(value = "/entreprise", method = RequestMethod.POST)
+	@RequestMapping(value = "/entreprises", method = RequestMethod.POST)
 	public Entreprise saveEntreprise(@RequestBody Entreprise e) {
 		return entrepriseMetier.saveEntreprise(e);
 	}
 
-	@RequestMapping(value = "/entreprise", method = RequestMethod.GET)
+	@RequestMapping(value = "/entreprises", method = RequestMethod.GET)
 	public List<Entreprise> listEntreprises() {
 		return entrepriseMetier.listEntreprises();
 	}
