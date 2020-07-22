@@ -22,8 +22,8 @@ public class PersonRestService {
 	}
 
 	@RequestMapping(value = "/persons/{code}", method = RequestMethod.GET)
-	public Person getPerson(@PathVariable String p) {
-		return personMetier.getPerson(p);
+	public Person getPerson(@PathVariable String code) {
+		return personMetier.getPerson(code);
 	}
 	
 	

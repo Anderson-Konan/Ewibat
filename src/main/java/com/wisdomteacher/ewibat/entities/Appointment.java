@@ -19,7 +19,7 @@ public class Appointment implements Serializable{
 	private Date date_app;
 	
 	private Date hour;
-	private Boolean status;
+	private AppointmentStatus status = AppointmentStatus.blocked;
 	
 	@ManyToOne
 	@JoinColumn(name="codeComp")
@@ -71,15 +71,17 @@ public class Appointment implements Serializable{
 		this.hour = hour;
 	}
 
-
-	public Boolean getStatus() {
+	
+	public AppointmentStatus getStatus() {
 		return status;
 	}
 
 
-	public void setStatus(Boolean status) {
+
+	public void setStatus(AppointmentStatus status) {
 		this.status = status;
 	}
+
 
 
 	public Entreprise getCompany() {

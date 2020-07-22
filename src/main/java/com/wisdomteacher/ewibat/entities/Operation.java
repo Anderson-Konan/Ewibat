@@ -1,5 +1,7 @@
 package com.wisdomteacher.ewibat.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 	@Type(name = "location", value = Location.class),
 	@Type(name = "vente", value = Vente.class)
 })
-public abstract class Operation {
+public abstract class Operation implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

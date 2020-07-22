@@ -1,5 +1,6 @@
 package com.wisdomteacher.ewibat.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity @Table(name = "T_Stats")
-public class Statistic {
+public class Statistic implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

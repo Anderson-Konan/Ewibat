@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -29,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 	@Type(name = "user", value = User.class),
 	@Type(name = "admin", value = Admin.class)
 })
+
 public abstract class Person implements Serializable{
 	
 	@Id
@@ -48,14 +51,15 @@ public abstract class Person implements Serializable{
 	joinColumns= @JoinColumn(name = "codePerson"),
 	inverseJoinColumns = @JoinColumn(name="numMessage"))
 	private Collection<Message> messages;
-	
-	@OneToMany(mappedBy = "person")
+
+	@OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
 	private Collection<Operation> operations;
 	
 	@ManyToMany
 	@JoinTable(name = "T_Person_Stats_Associations",
 	joinColumns= @JoinColumn(name = "codePerson"),
 	inverseJoinColumns = @JoinColumn(name="codeStats"))
+	
 	private Collection<Statistic> statistics;
 	
 
@@ -149,7 +153,8 @@ public abstract class Person implements Serializable{
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
-
+	
+	@JsonIgnore
 	public Collection<Message> getMessages() {
 		return messages;
 	}
@@ -157,17 +162,19 @@ public abstract class Person implements Serializable{
 	public void setMessages(Collection<Message> messages) {
 		this.messages = messages;
 	}
-
+	
+	
 	public Collection<Operation> getOperations() {
 		return operations;
 	}
-
+	
+	
 	public void setOperations(Collection<Operation> operations) {
 		this.operations = operations;
 	}
 
 
-
+	@JsonIgnore
 	public Collection<Statistic> getStatistics() {
 		return statistics;
 	}
@@ -176,9 +183,6 @@ public abstract class Person implements Serializable{
 
 	public void setStatistics(Collection<Statistic> statistics) {
 		this.statistics = statistics;
-	}
-	
-	
-	
+	}	
 
 }

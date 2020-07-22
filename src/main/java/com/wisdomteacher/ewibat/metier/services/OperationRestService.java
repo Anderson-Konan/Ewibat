@@ -22,8 +22,8 @@ public class OperationRestService {
 	}
 
 	@RequestMapping(value = "/operations/{code}", method = RequestMethod.GET)
-	public Operation getOperation(@PathVariable Long l) {
-		return operationMetier.getOperation(l);
+	public Operation getOperation(@PathVariable Long code) {
+		return operationMetier.getOperation(code);
 	}
 	
 	
