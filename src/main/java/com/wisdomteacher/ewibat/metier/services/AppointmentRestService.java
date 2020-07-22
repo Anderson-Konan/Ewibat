@@ -17,7 +17,7 @@ public class AppointmentRestService {
 	@Autowired
 	private AppointmentMetier appointmentMetier;
 
-	@RequestMapping(value = "/appointments", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
+	@RequestMapping(value = "/appointments", method = RequestMethod.POST)
 	public Appointment create(@RequestBody Appointment a) {
 		return appointmentMetier.create(a);
 	}
