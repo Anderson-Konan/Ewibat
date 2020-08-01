@@ -8,6 +8,8 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -26,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_PERSON", discriminatorType = DiscriminatorType.STRING)
 
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
 	@Type(name = "user", value = User.class),
@@ -35,11 +38,14 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 public abstract class Person implements Serializable{
 	
 	@Id
-	private String codePerson;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long codePerson;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String numTel;
+	private String password;
+	private String profession;
 	private String adresse;
 	private String sexe;
 	private String civilite;
@@ -70,18 +76,16 @@ public abstract class Person implements Serializable{
 
 	
 
-	public String getCodePerson() {
+	
+
+
+	public Long getCodePerson() {
 		return codePerson;
 	}
 
-
-
-	public void setCodePerson(String codePerson) {
+	public void setCodePerson(Long codePerson) {
 		this.codePerson = codePerson;
 	}
-
-
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -112,6 +116,22 @@ public abstract class Person implements Serializable{
 
 	public void setNumTel(String numTel) {
 		this.numTel = numTel;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getProfession() {
+		return profession;
+	}
+
+	public void setProfession(String profession) {
+		this.profession = profession;
 	}
 
 	public String getAdresse() {

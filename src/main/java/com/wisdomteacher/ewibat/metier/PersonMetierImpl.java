@@ -19,10 +19,21 @@ public class PersonMetierImpl implements PersonMetier{
 	}
 
 	@Override
-	public Person getPerson(String p) {
+	public Person getPerson(Long p) {
 		
 		return personRepository.getOne(p);
 
+	}
+
+	@Override
+	public Person update(Long p, Person person) {
+		return personRepository.save(person);
+	}
+
+	@Override
+	public void deleteById(Person id) {
+		personRepository.delete(id);
+		
 	}
 
 }
