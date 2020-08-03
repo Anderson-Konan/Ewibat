@@ -21,7 +21,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @Entity @Table(name = "T_Person")
@@ -31,8 +30,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-	@Type(name = "user", value = User.class),
-	@Type(name = "admin", value = Admin.class)
+	@JsonSubTypes.Type( value = User.class, name = "user"),
+	@JsonSubTypes.Type( value = Admin.class, name = "admin")
 })
 
 public abstract class Person implements Serializable{
