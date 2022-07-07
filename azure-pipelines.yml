@@ -17,7 +17,7 @@ stages:
       variables:
         stage_variable1: SV1
       jobs:
-        - job: 'BuildJob2'
+        - job: 'BuildJob1'
           variables: 
             job_variable1: JV1
           steps:
