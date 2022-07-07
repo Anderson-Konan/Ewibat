@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
   
 variables:
-  golbal_variable1: GV1
+  global_variable1: GV1
 
 stages:
     - stage: 'Build'
