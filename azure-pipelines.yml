@@ -23,7 +23,7 @@ steps:
   - script: echo $(one)
     displayName: 'Macro'
     condition: 
-  - ${{if eq(${{variables.one}}, 'V1') }}:
+  - ${{if eq(variables.one, 'V1') }}:
     - script: echo '=V1'
-  - ${{if eq(${{variables.one}}, 'V2') }}:
+  - ${{if eq(variables.one, 'V2') }}:
     - script: echo '=V2'
