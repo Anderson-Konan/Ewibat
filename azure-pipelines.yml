@@ -8,12 +8,14 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+  
+variables:
+  filename1: 'fichier1.txt'
+  filename2: 'fichier2.txt'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: $(filename1)
+  displayName: 'Affichage du premier nom de variable'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- script: $(filename2)
+  displayName: 'Affichage du deuxieme nom de variable'
