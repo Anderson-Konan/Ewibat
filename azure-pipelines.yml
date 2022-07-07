@@ -10,24 +10,21 @@ pool:
   vmImage: ubuntu-latest
   
 variables:
-  global_variable1: GV1
+  - name: one
+    value: V1
 
-stages:
-    - stage: 'Build'
-      variables:
-        stage_variable1: SV1
-      jobs:
-        - job: 'BuildJob1'
-          variables: 
-            job_variable1: JV1
-          steps:
-          - script: echo $(global_variable1)
-          - script: echo $(stage_variable1)
-          - script: echo $(job_variable1)
-            displayName: 'Execution dans le premier stage'
+steps:
+  - script: echo $(one)
+    displayName: 'Macro'
 
-        - job: 'BuildJob2'
-          steps:
-            - script: echo $(global_variable1)
-            - script: echo $(stage_variable1)
-            - script: echo $(job_variable1)
+  - script: echo ${{variables.one}} 
+    displayName: 'Expression'
+
+  - script: echo '##vso[task.setvariable variables=one]V2'
+    displayName: 'Changement de valeur de V1 à V2'
+    
+  - script: echo $(one)
+    displayName: 'Macro'
+
+  - script: echo ${{variables.one}} 
+    displayName: 'Expression'
