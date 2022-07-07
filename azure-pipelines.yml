@@ -22,8 +22,8 @@ steps:
     
   - script: echo $(one)
     displayName: 'Macro'
-
-  - ${{if eq($(one), 'V1')}}:
+    condition: 
+  - ${{if eq(${{variables.one}}, 'V1') }}:
     - script: echo '=V1'
-  - ${{if eq($(one), 'V2')}}:
+  - ${{if eq(${{variables.one}}, 'V2') }}:
     - script: echo '=V2'
