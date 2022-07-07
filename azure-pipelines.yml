@@ -19,10 +19,10 @@ stages:
       jobs:
         - job: 'Job1'
           variables: 
-            job_variable: JV1
+            job_variable1: JV1
           steps:
-          - script: echo $(global_variable)
-          - script: echo $(stage_variable)
-          - script: echo $(job_variable)
+          - script: echo $(global_variable1)
+          - script: echo $(stage_variable1)
+          - script: echo $(job_variable1)
             displayName: 'Execution dans le premier stage'
 
