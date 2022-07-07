@@ -20,7 +20,7 @@ steps:
   - script: echo ${{variables.one}} 
     displayName: 'Expression'
 
-  - script: echo '##vso[task.setvariable variables=one]V2'
+  - script: echo '##vso[task.setvariable variable=one]V2'
     displayName: 'Changement de valeur de V1 à V2'
     
   - script: echo $(one)
