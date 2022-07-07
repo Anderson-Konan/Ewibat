@@ -14,8 +14,8 @@ variables:
   filename2: 'fichier2.txt'
 
 steps:
-- script: $(filename1)
+- script: echo $(filename1)
   displayName: 'Affichage du premier nom de variable'
 
-- script: $(filename2)
+- script: echo $(filename2)
   displayName: 'Affichage du deuxieme nom de variable'
