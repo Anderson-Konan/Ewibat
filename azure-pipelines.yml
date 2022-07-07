@@ -17,7 +17,7 @@ stages:
       variables:
         stage_variable1: SV1
       jobs:
-        - job: 'Job1'
+        - job: 'BuildJob2'
           variables: 
             job_variable1: JV1
           steps:
@@ -26,3 +26,8 @@ stages:
           - script: echo $(job_variable1)
             displayName: 'Execution dans le premier stage'
 
+        - job: 'BuildJob2'
+          steps:
+            - script: echo $(global_variable1)
+            - script: echo $(stage_variable1)
+            - script: echo $(job_variable1)
