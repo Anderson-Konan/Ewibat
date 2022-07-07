@@ -10,12 +10,19 @@ pool:
   vmImage: ubuntu-latest
   
 variables:
-  filename1: 'fichier1.txt'
-  filename2: 'fichier2.txt'
+  golbal_variable1: GV1
 
-steps:
-- script: echo $(filename1)
-  displayName: 'Affichage du premier nom de variable'
+stages:
+    - stage: 'Build'
+      variables:
+        stage_variable1: SV1
+      jobs:
+        - job: 'Job1'
+          variables: 
+            job_variable: JV1
+          steps:
+          - script: echo $(global_variable)
+          - script: echo $(stage_variable)
+          - script: echo $(job_variable)
+            displayName: 'Execution dans le premier stage'
 
-- script: echo $(filename2)
-  displayName: 'Affichage du deuxieme nom de variable'
