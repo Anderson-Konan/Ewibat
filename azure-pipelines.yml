@@ -17,14 +17,13 @@ steps:
   - script: echo $(one)
     displayName: 'Macro'
 
-  - script: echo ${{variables.one}} 
-    displayName: 'Expression'
-
   - script: echo '##vso[task.setvariable variable=one]V2'
     displayName: 'Changement de valeur de V1 à V2'
     
   - script: echo $(one)
     displayName: 'Macro'
 
-  - script: echo ${{variables.one}} 
-    displayName: 'Expression'
+  - ${{if eq($(one), 'V1')}}:
+    - script: echo '=V1'
+  - ${{if eq($(one), 'V2')}}:
+    - script: echo '=V2'
